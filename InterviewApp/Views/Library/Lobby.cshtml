@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<InterviewApp.Models.Entities.Library>
+
+
+<div class="text-center">
+    <h1>Welcome to the library!</h1>
+
+    @foreach (var library in Model)
+    {
+        @if (library.HasBooks)
+        {
+            <h3>Select any book you like. There are @library.Books books left</h3>
+        }
+        else
+        {
+            <h3>Sorry, there are no more books today.</h3>
+        }
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-success">Return</button>
+                </div>
+
+                @if (library.HasBooks)
+                {
+                    <div class="col">
+                        <button class="btn btn-warning" asp-action="Borrow" asp-controller="Library">Borrow</button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
